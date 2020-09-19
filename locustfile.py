@@ -56,8 +56,8 @@ class FDBTTest(HttpUser):
                                       "option-6": "{\"stop\": {\"stopName\": \"Jolly Thresher\", \"naptanCode\": \"wrgajgt\", \"atcoCode\": \"0690WNA02878\", \"localityCode\": \"E0042988\", \"localityName\": \"Broomedge\", \"parentLocalityName\": \"Lymm\", \"indicator\": \"adj\", \"street\": \"High Legh Road\"}, \"stage\": \"stage3\"}",
                                       "service": "{\"lineName\": \"47\", \"nocCode\": \"IWBusCo\", \"operatorShortName\": \"Warrington's Own Buses\", \"serviceDescription\": \"Warrington - Lymm - High Legh - Knutsford\"}",
                                       "userfarestages": "{\"fareStages\": [{\"stageName\": \"stage1\", \"prices\": [{\"price\": \"1.00\", \"fareZones\": [\"stage2\"]}, {\"price\": \"1.20\", \"fareZones\": [\"stage3\"]}]}, {\"stageName\": \"stage2\", \"prices\": [{\"price\": \"1.40\", \"fareZones\": [\"stage3\"]}]}, {\"stageName\": \"stage3\", \"prices\": []}]}"})
-        form_post(self, "/selectSalesOfferPackage", {"Onboard(cash)": "{\"name\": \"Onboard (cash)\", \"description\": \"Purchasable on board the bus, with cash, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"cash\"], \"ticketFormats\": [\"paperTicket\"]}",
-                                                     "Onboard(contactless)": "{\"name\": \"Onboard (contactless)\", \"description\": \"Purchasable on board the bus, with a contactless card or device, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"contactlessPaymentCard\"], \"ticketFormats\": [\"paperTicket\"]}"})
+        form_post(self, "/selectSalesOfferPackage", {"Awesome Product": ["{\"name\": \"Onboard (cash)\", \"description\": \"Purchasable on board the bus, with cash, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"cash\"], \"ticketFormats\": [\"paperTicket\"]}",
+                                                                         "{\"name\": \"Onboard (contactless)\", \"description\": \"Purchasable on board the bus, with a contactless card or device, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"contactlessPaymentCard\"], \"ticketFormats\": [\"paperTicket\"]}"]})
 
     @task(2)
     def return_journey(self):
@@ -100,8 +100,8 @@ class FDBTTest(HttpUser):
                   {"purchaseLocations": ["onBoard"], "paymentMethods": ["debitCard"], "ticketFormats": ["paperTicket"]})
         form_post(self, "/describeSalesOfferPackage",
                   {"salesOfferPackageName": "Load Test SoP", "salesOfferPackageDescription": "Best SoP"})
-        form_post(self, "/selectSalesOfferPackage", {"Onboard(cash)": "{\"name\": \"Onboard (cash)\", \"description\": \"Purchasable on board the bus, with cash, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"cash\"], \"ticketFormats\": [\"paperTicket\"]}",
-                                                     "Load Test SoP": "{\"name\": \"Load Test SoP\", \"description\": \"Best SoP\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"debitCard\"], \"ticketFormats\": [\"paperTicket\"]}"})
+        form_post(self, "/selectSalesOfferPackage", {"Awesome Product": ["{\"name\": \"Onboard (cash)\", \"description\": \"Purchasable on board the bus, with cash, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"cash\"], \"ticketFormats\": [\"paperTicket\"]}",
+                                                                         "{\"name\": \"Onboard (contactless)\", \"description\": \"Purchasable on board the bus, with a contactless card or device, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"contactlessPaymentCard\"], \"ticketFormats\": [\"paperTicket\"]}"]})
 
     @task(2)
     def multiservice_multiproduct_journey(self):
@@ -137,8 +137,10 @@ class FDBTTest(HttpUser):
         form_post(self, "/multipleProductValidity", {"validity-row0": "24hr",
                                                      "validity-row1": "endOfCalendarDay",
                                                      "validity-row2": "24hr"})
-        form_post(self, "/selectSalesOfferPackage", {"Onboard(cash)": "{\"name\": \"Onboard (cash)\", \"description\": \"Purchasable on board the bus, with cash, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"cash\"], \"ticketFormats\": [\"paperTicket\"]}",
-                                                     "Onboard(contactless)": "{\"name\": \"Onboard (contactless)\", \"description\": \"Purchasable on board the bus, with a contactless card or device, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"contactlessPaymentCard\"], \"ticketFormats\": [\"paperTicket\"]}"})
+        form_post(self, "/selectSalesOfferPackage", {"product1": ["{\"name\": \"Onboard (cash)\", \"description\": \"Purchasable on board the bus, with cash, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"cash\"], \"ticketFormats\": [\"paperTicket\"]}",
+                                                                  "{\"name\": \"Onboard (contactless)\", \"description\": \"Purchasable on board the bus, with a contactless card or device, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"contactlessPaymentCard\"], \"ticketFormats\": [\"paperTicket\"]}"], "product2": ["{\"name\": \"Onboard (cash)\", \"description\": \"Purchasable on board the bus, with cash, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"cash\"], \"ticketFormats\": [\"paperTicket\"]}",
+                                                                                                                                                                                                                                                                                                                                                                 "{\"name\": \"Onboard (contactless)\", \"description\": \"Purchasable on board the bus, with a contactless card or device, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"contactlessPaymentCard\"], \"ticketFormats\": [\"paperTicket\"]}"], "product3": ["{\"name\": \"Onboard (cash)\", \"description\": \"Purchasable on board the bus, with cash, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"cash\"], \"ticketFormats\": [\"paperTicket\"]}",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                "{\"name\": \"Onboard (contactless)\", \"description\": \"Purchasable on board the bus, with a contactless card or device, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"contactlessPaymentCard\"], \"ticketFormats\": [\"paperTicket\"]}"]})
 
     @task(1)
     def multiservice_singleproduct_journey(self):
@@ -170,8 +172,8 @@ class FDBTTest(HttpUser):
                   {"purchaseLocations": ["onBoard"], "paymentMethods": ["debitCard"], "ticketFormats": ["paperTicket"]})
         form_post(self, "/describeSalesOfferPackage",
                   {"salesOfferPackageName": "Load Test SoP", "salesOfferPackageDescription": "Best SoP"})
-        form_post(self, "/selectSalesOfferPackage", {"Onboard(cash)": "{\"name\": \"Onboard (cash)\", \"description\": \"Purchasable on board the bus, with cash, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"cash\"], \"ticketFormats\": [\"paperTicket\"]}",
-                                                     "Load Test SoP": "{\"name\": \"Load Test SoP\", \"description\": \"Best SoP\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"debitCard\"], \"ticketFormats\": [\"paperTicket\"]}"})
+        form_post(self, "/selectSalesOfferPackage", {"Awesome Product": ["{\"name\": \"Onboard (cash)\", \"description\": \"Purchasable on board the bus, with cash, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"cash\"], \"ticketFormats\": [\"paperTicket\"]}",
+                                                                         "{\"name\": \"Onboard (contactless)\", \"description\": \"Purchasable on board the bus, with a contactless card or device, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"contactlessPaymentCard\"], \"ticketFormats\": [\"paperTicket\"]}"]})
 
     @task(3)
     def flatfare_journey(self):
@@ -187,8 +189,8 @@ class FDBTTest(HttpUser):
                                          "630#NW_04_WBTR_630_1#30/08/2020": "LOWER INCE - WIGAN"})
         form_post(self, "/productDetails",
                   {"productDetailsNameInput": "Awesome Product", "productDetailsPriceInput": "123"})
-        form_post(self, "/selectSalesOfferPackage", {"Onboard(cash)": "{\"name\": \"Onboard (cash)\", \"description\": \"Purchasable on board the bus, with cash, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"cash\"], \"ticketFormats\": [\"paperTicket\"]}",
-                                                     "Onboard(contactless)": "{\"name\": \"Onboard (contactless)\", \"description\": \"Purchasable on board the bus, with a contactless card or device, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"contactlessPaymentCard\"], \"ticketFormats\": [\"paperTicket\"]}"})
+        form_post(self, "/selectSalesOfferPackage", {"Awesome Product": ["{\"name\": \"Onboard (cash)\", \"description\": \"Purchasable on board the bus, with cash, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"cash\"], \"ticketFormats\": [\"paperTicket\"]}",
+                                                                         "{\"name\": \"Onboard (contactless)\", \"description\": \"Purchasable on board the bus, with a contactless card or device, as a paper ticket.\", \"purchaseLocations\": [\"onBoard\"], \"paymentMethods\": [\"contactlessPaymentCard\"], \"ticketFormats\": [\"paperTicket\"]}"]})
 
     def on_start(self):
         self.client.get("/")
